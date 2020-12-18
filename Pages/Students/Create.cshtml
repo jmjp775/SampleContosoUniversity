@@ -24,9 +24,14 @@
                 <span asp-validation-for="Student.FirstMidName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Student.Enrollment" class="control-label"></label>
-                <input asp-for="Student.Enrollment" class="form-control" />
-                <span asp-validation-for="Student.Enrollment" class="text-danger"></span>
+                <label asp-for="Student.EnrollmentDate" class="control-label"></label>
+                <input asp-for="Student.EnrollmentDate" class="form-control" />
+                <span asp-validation-for="Student.EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.EmailAddress" class="control-label"></label>
+                <input asp-for="Student.EmailAddress" class="form-control" />
+                <span asp-validation-for="Student.EmailAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
