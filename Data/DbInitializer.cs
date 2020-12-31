@@ -11,7 +11,10 @@ namespace ContosoUniversity.Data
     {
         public static void Initialize (SchoolContext context)
         {
-            context.Database.EnsureCreated();
+            //EnsureCreated was used initally for testing and rapid prototyping, 
+            //where the database is dropped and re-created frequently
+            //EnsureCreated does not create a migrations history table and cannot be used with migrations.
+            //context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.Students.Any())
@@ -21,14 +24,14 @@ namespace ContosoUniversity.Data
 
             var students = new Student[]
             {
-                new Student{FirstMidName="Carson", LastName="Alexander", EnrollmentDate=DateTime.Parse("2019-09-01")},
-                new Student{FirstMidName="Meridith", LastName="Alonso", EnrollmentDate=DateTime.Parse("2017-09-01")},
-                new Student{FirstMidName="Arturo", LastName="Anand", EnrollmentDate=DateTime.Parse("2018-09-01")},
-                new Student{FirstMidName="Gytis", LastName="Barzdukas", EnrollmentDate=DateTime.Parse("2017-09-01")},
-                new Student{FirstMidName="Yan", LastName="Li", EnrollmentDate=DateTime.Parse("2017-09-01")},
-                new Student{FirstMidName="Peggy", LastName="Justice", EnrollmentDate=DateTime.Parse("2016-09-01")},
-                new Student{FirstMidName="Laura", LastName="Norman", EnrollmentDate=DateTime.Parse("2018-09-01")},
-                new Student{FirstMidName="Nino", LastName="Olivetto", EnrollmentDate=DateTime.Parse("2019-09-01")}
+                new Student{FirstMidName="Carson", LastName="Alexander", EmailAddress="cA@gmail.com", EnrollmentDate=DateTime.Parse("2019-09-01")},
+                new Student{FirstMidName="Meridith", LastName="Alonso", EmailAddress="MAlonso@gmail.com", EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Arturo", LastName="Anand", EmailAddress="AAnand@gmail.com", EnrollmentDate=DateTime.Parse("2018-09-01")},
+                new Student{FirstMidName="Gytis", LastName="Barzdukas", EmailAddress="GBarzdukas@gmail.com", EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Yan", LastName="Li", EmailAddress="YLi@gmail.com", EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Peggy", LastName="Justice", EmailAddress="PJustice@gmail.com", EnrollmentDate=DateTime.Parse("2016-09-01")},
+                new Student{FirstMidName="Laura", LastName="Norman", EmailAddress="LNorman@gmail.com", EnrollmentDate=DateTime.Parse("2018-09-01")},
+                new Student{FirstMidName="Nino", LastName="Olivetto", EmailAddress="NOlivetto@gmail.com", EnrollmentDate=DateTime.Parse("2019-09-01")}
             };
 
             context.Students.AddRange(students);

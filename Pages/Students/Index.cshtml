@@ -35,6 +35,9 @@
                 @Html.DisplayNameFor(model => model.Students[0].FirstMidName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Students[0].EmailAddress)
+            </th>
+            <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort"
                    asp-route-currentFilter="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Students[0].EnrollmentDate)
@@ -83,7 +86,7 @@
 <a asp-page="./Index"
    asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.Students.PageIndex + 1)"
-   asp-route-currentFilter="@nextDisabled">
+   class="btn btn-primary @nextDisabled">
     Next
 </a>
 
