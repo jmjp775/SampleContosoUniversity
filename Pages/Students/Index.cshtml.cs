@@ -66,7 +66,7 @@ namespace ContosoUniversity.Pages.Students
             }
 
             //A real app would use configuration to set the pageSize value
-            int pageSize = 3;
+            int pageSize = 10;
             Students = await PaginatedList<Student>.CreateAsync(
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
