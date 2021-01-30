@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
@@ -17,12 +18,12 @@ namespace ContosoUniversity.Migrations
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
-            migrationBuilder.AddColumn<int>(
-                name: "DepartmentID",
-                table: "Course",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            //migrationBuilder.AddColumn<int>(
+            //    name: "DepartmentID",
+            //    table: "Course",
+            //    type: "int",
+            //    nullable: false,
+            //    defaultValue: 0);
 
             migrationBuilder.CreateTable(
                 name: "Instructor",
@@ -68,7 +69,7 @@ namespace ContosoUniversity.Migrations
                 columns: table => new
                 {
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Budget = table.Column<decimal>(type: "money", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -84,6 +85,16 @@ namespace ContosoUniversity.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.Sql("INSERT INTO dbo.Department (Name, Budget, StartDate) VALUES ('Temp', 0.00, GETDATE())");
+            // Default value for FK points to department created above, with
+            // defaultValue changed to 1 in the following AddColumn statement.
+
+            migrationBuilder.AddColumn<int>(
+                name: "DepartmentID",
+                table: "Course",
+                nullable: false,
+                defaultValue: 1);
 
             migrationBuilder.CreateTable(
                 name: "OfficeAssignment",
