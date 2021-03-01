@@ -30,8 +30,6 @@ namespace ContosoUniversity.Pages.Courses
                 DepartmentName = p.Department.Name
             }).ToListAsync();
         }
-
-        
-}
+    }
 }
 
