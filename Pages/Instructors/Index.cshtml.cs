@@ -24,6 +24,7 @@ namespace ContosoUniversity.Pages.Instructors
         public async Task OnGetAsync(int? id, int? courseID)
         {
             InstructorData = new InstructorIndexData();
+
             InstructorData.Instructors = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.CourseAssignments)
@@ -40,17 +41,28 @@ namespace ContosoUniversity.Pages.Instructors
             if (id != null)
             {
                 InstructorID = id.Value;
-                Instructor instructor = InstructorData.Instructors
-                    .Where(i => i.ID == id.Value).Single();
+                //This calls the where method separately
+                //Instructor instructor = InstructorData.Instructors
+                //    .Where(i => i.ID == id.Value).Single();
+
+                //This Single method passes in the where condition, instead of calling it separately
+                Instructor instructor = InstructorData.Instructors.Single(
+                    i => i.ID == id.Value);
                 InstructorData.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
 
             if (courseID != null)
             {
                 CourseID = courseID.Value;
-                var selectedCourse = InstructorData.Courses
-                    .Where(x => x.CourseID == courseID).Single();
-                InstructorData.Enrollments = selectedCourse.Enrollments;
+                //This calls the where method separately
+                //var selectedCourse = InstructorData.Courses
+                //    .Where(x => x.CourseID == courseID).Single();
+                //InstructorData.Enrollments = selectedCourse.Enrollments;
+
+
+                //This Single method passes in the where condition, instead of calling it separately
+                InstructorData.Enrollments = InstructorData.Courses.Single(
+                    x => x.CourseID == courseID).Enrollments;
             }
         }
     }
